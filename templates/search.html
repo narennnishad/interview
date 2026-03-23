@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <a href="{{ url_for('index') }}" class="back-link">← Back to Overview</a>
+    <h1>Search Results</h1>
+    <p class="subtitle">Showing results for "{{ query }}"</p>
+</header>
+
+{% if results %}
+<div class="pdf-list">
+    {% for res in results %}
+    <div class="pdf-item">
+        <a href="{{ url_for('serve_pdf', filename=res.name) }}" class="pdf-link" target="_blank">
+            <div style="flex-grow: 1;">
+                {{ res.name.split('/')[-1].replace('_', ' ').replace('.pdf', '') }}
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
+                    Found in: {{ res.set_name }}
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div style="text-align: center; margin-top: 4rem;">
+    <p style="font-size: 1.2rem; color: var(--text-muted);">No topics found matching your query. Try a different term.</p>
+</div>
+{% endif %}
+{% endblock %}

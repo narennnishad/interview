@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, abort
+from flask import Flask, render_template, send_from_directory, abort, request
 import os
 
 app = Flask(__name__)
@@ -77,6 +77,21 @@ def view_set(set_id):
 @app.route('/pdf/<path:filename>')
 def serve_pdf(filename):
     return send_from_directory(PDF_DIR, filename)
+
+@app.route('/search')
+def search():
+    query = request.args.get('q', '').lower()
+    results = []
+    if query:
+        for set_id, set_info in sets_data.items():
+            for pdf in set_info['pdfs']:
+                if query in pdf.lower():
+                    results.append({
+                        'name': pdf,
+                        'set_name': set_info['name'],
+                        'set_id': set_id
+                    })
+    return render_template('search.html', query=query, results=results)
 
 if __name__ == '__main__':
     # Use environment port for production (Render)
