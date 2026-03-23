@@ -43,6 +43,24 @@ sets_data = {
             '5G_EIR_Reference.pdf',
             'PFCP_Session_IEs.pdf'
         ]
+    },
+    'set4': {
+        'name': 'Set 4: Docker & Kubernetes',
+        'description': 'Essential containerization and orchestration interview materials.',
+        'pdfs': [
+            'Docker and  K8s/Docker_Kubernetes_Interview_QA.pdf',
+            'Docker and  K8s/docker-commands-guide_1.pdf',
+            'Docker and  K8s/docker_tutorial.pdf',
+            'Docker and  K8s/kubectl_k8s_notes.pdf',
+            'Docker and  K8s/kubectl_k8s_notes1.pdf'
+        ]
+    },
+    'set5': {
+        'name': 'Set 5: Robot Framework',
+        'description': 'QA and automation testing interview questions for Robot Framework.',
+        'pdfs': [
+            'Robot/Robot_Framework_100_Interview_QA.pdf'
+        ]
     }
 }
 
