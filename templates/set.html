@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <a href="{{ url_for('index') }}" class="back-link">← Back to Overview</a>
+    <h1>{{ set_info.name }}</h1>
+    <p class="subtitle">{{ set_info.description }}</p>
+</header>
+
+<div class="pdf-list">
+    {% for pdf in set_info.pdfs %}
+    <div class="pdf-item">
+        <a href="{{ url_for('serve_pdf', filename=pdf) }}" class="pdf-link" target="_blank">
+            {{ pdf.replace('_', ' ').replace('.pdf', '') }}
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
