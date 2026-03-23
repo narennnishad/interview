@@ -80,7 +80,8 @@ def serve_pdf(filename):
 
 @app.route('/search')
 def search():
-    query = request.args.get('q', '').lower()
+    original_query = request.args.get('q', '').strip()
+    query = original_query.lower()
     results = []
     if query:
         for set_id, set_info in sets_data.items():
@@ -91,7 +92,7 @@ def search():
                         'set_name': set_info['name'],
                         'set_id': set_id
                     })
-    return render_template('search.html', query=query, results=results)
+    return render_template('search.html', query=original_query, results=results)
 
 if __name__ == '__main__':
     # Use environment port for production (Render)
